@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+/* A binary tree node structure
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+ */
+
+class Solution{
+    public:
+    int height;
+    //Function to check whether a binary tree is balanced or not.
+    bool isBalanced(Node *root)
+    {
+        if(root==NULL){
+            height=0;
+            return true;
+        }
+        height=0;
+        int lsb=0;
+        if(isBalanced(root->left))
+            lsb=1;
+        int l_sub_height=height; 
+        height=0;
+        int rsb=0;
+        if(isBalanced(root->right))
+            rsb=1;
+        int r_sub_height=height;
+        height=max(r_sub_height,l_sub_height)+1;
+        if(lsb==1 && rsb && abs(r_sub_height-l_sub_height)<=1)
+            return true;
+        return false;
+    }
+};
+
+
