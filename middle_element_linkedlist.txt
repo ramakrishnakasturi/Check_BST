@@ -15,3 +15,9 @@
         return head->data;
         // Your code here
     }
+
+
+///////////////////////////////////////////////////////////
+
+
+ another approach using slow and fast pointers
