@@ -1,0 +1,19 @@
+void fun(Node *root, int l, vector<int> &res){
+    if(root==NULL) return;
+    
+    if(l==res.size()) res.push_back(root->data);
+    
+    fun(root->left,l+1,res);
+    fun(root->right,l+1,res);
+    
+}
+
+vector<int> leftView(Node *root)
+{
+   vector<int> res;
+   int l=0;
+   fun(root,l,res);
+   
+   return res;
+   // Your code here
+}
