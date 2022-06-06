@@ -1,0 +1,21 @@
+class Solution{
+    public:
+
+    long long maxSubarraySum(int arr[], int n){
+        
+        // Your code here
+        long int maxsum=arr[0];
+        long int maxtillnow=max(0,arr[0]);
+        for(int i=1;i<n;i++){
+            maxsum=max(maxsum,maxtillnow+arr[i]);
+            if(maxtillnow+arr[i]>0){
+                maxtillnow+=arr[i];
+            }
+            else{
+                maxtillnow=0;
+            }
+            
+        }
+        return maxsum;
+    }
+};
