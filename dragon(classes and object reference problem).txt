@@ -1,0 +1,45 @@
+//dragon defeat (power and bonus)
+#include <iostream>
+#include <vector>
+#include<unordered_map>
+#include<algorithm>
+using namespace std;
+class monster{
+    public:
+    int bonus,power;
+    public:
+    void monster1(int power,int bonus){
+        this->power=power;
+        this->bonus=bonus;
+    }
+    
+};
+bool comparepower(monster m1, monster m2)
+{
+    return (m1.power < m2.power);
+}
+int main() {
+    int n,k;
+    cin>>n>>k;
+    vector<int> power(n);
+    vector<int> bonus(n);
+    for(int i=0;i<n;i++)
+        cin>>power[i];
+    for(int i=0;i<n;i++)
+        cin>>bonus[i];
+    vector<monster> mon(n);
+    for(int i=0;i<n;i++){
+        mon[i].monster1(power[i],bonus[i]);
+    }
+    sort(mon.begin(),mon.end(),comparepower);
+    
+    int cnt=0;
+    for(int i=0;i<n;i++){
+        if(mon[i].power>k)
+            break;
+        cnt++;
+        k=k+mon[i].bonus;
+    }
+    cout<<cnt;
+    return 0;
+}
