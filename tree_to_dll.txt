@@ -1,0 +1,45 @@
+class Solution
+{
+    pair<Node*, Node*> check(Node* curr){
+        if(curr->right==NULL and curr->left==NULL){
+            return {curr,curr};
+        }
+        else if(curr->right==NULL){
+            pair<Node*, Node*> left=check(curr->left);
+            Node* lhead=left.first;
+            Node* ltail=left.second;
+            ltail->right=curr;
+            curr->left=ltail;
+            return {lhead,curr};
+        }
+        else if(curr->left==NULL){
+            pair<Node*, Node*> right=check(curr->right);
+            Node* rhead=right.first;
+            Node* rtail=right.second;
+            rhead->left=curr;
+            curr->right=rhead;
+            return {curr,rtail};
+        }
+        else{
+            pair<Node*, Node*> left=check(curr->left);
+            pair<Node*, Node*> right=check(curr->right);
+            Node* lhead=left.first;
+            Node* ltail=left.second;
+            ltail->right=curr;
+            curr->left=ltail;
+            Node* rhead=right.first;
+            Node* rtail=right.second;
+            rhead->left=curr;
+            curr->right=rhead;
+            return {lhead,rtail};
+        }
+    }
+    public: 
+    //Function to convert binary tree to doubly linked list and return it.
+    Node * bToDLL(Node *root)
+    {
+        pair<Node*, Node*> ans=check(root);
+        return ans.first;
+        // your code here
+    }
+};

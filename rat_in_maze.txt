@@ -1,0 +1,49 @@
+class Solution{
+    vector<vector<bool>> visited;
+    vector<vector<int>> grid;
+    int N;
+    bool valid(int r, int c){
+        if(r<0 or r>=N or c<0 or c>=N or visited[r][c] or grid[r][c]==0){
+            return false;
+        } 
+        return true;
+    }
+    vector<string> ans;
+    void dfs(int r,int c,string path){
+        if(r==N-1 and c==N-1){
+            ans.push_back(path);
+        }
+        if(valid(r-1,c)){
+            visited[r-1][c]=true;
+            dfs(r-1,c,path+'U');
+            visited[r-1][c]=false;
+        }
+        if(valid(r+1,c)){
+            visited[r+1][c]=true;
+            dfs(r+1,c,path+'D');
+            visited[r+1][c]=false;
+        }
+        if(valid(r,c+1)){
+            visited[r][c+1]=true;
+            dfs(r,c+1,path+'R');
+            visited[r][c+1]=false;
+        }
+        if(valid(r,c-1)){
+            visited[r][c-1]=true;
+            dfs(r,c-1,path+'L');
+            visited[r][c-1]=false;
+        }
+    }
+    public:
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        grid=m;
+        N=grid.size();
+        visited=vector<vector<bool>>(N,vector<bool>(N,false));
+        if(valid(0,0)){
+            visited[0][0]=true;
+            dfs(0,0,"");
+        }
+        return ans;
+    }
+};

@@ -1,0 +1,19 @@
+def isValid(s):
+    flag = False
+    elements_array = s.split(".")
+    if(len(elements_array) == 4):
+        for i in elements_array:
+            if (i.isnumeric() and int(i)>=0 and int(i)<=255):
+                flag=True
+            if(len(i)>1 and i[0]=='0'):
+                flag=False
+                break
+            if(len(i)==0):
+                flag=False
+                break
+            if(i.isnumeric() and (int(i)<0 or int(i)>255)):
+                flag=False
+                break
+    if(flag==False):
+        return 0
+    return 1
