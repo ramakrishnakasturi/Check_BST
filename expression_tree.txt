@@ -1,0 +1,32 @@
+class Solution{
+    int fun(int a,int b,string c){
+        if(c=="+"){
+            return a+b;
+        }
+        else if(c=="-"){
+            return a-b;
+        }
+        else if(c=="*"){
+            return a*b;
+        }
+        else{
+            return a/b;
+        }
+    }
+    int eval(node* curr){
+        if(curr->left==NULL){
+            return stoi(curr->data);
+        }
+        else{
+            int left=eval(curr->left);
+            int right=eval(curr->right);
+            return fun(left,right,curr->data);
+        }
+    }
+  public:
+    /*You are required to complete below method */
+    int evalTree(node* root) {
+        // Your code here
+        return eval(root);
+    }
+};

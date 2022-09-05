@@ -1,0 +1,32 @@
+class Solution{
+    public:
+    int currindex;
+    unordered_map<int, int> index;
+    Node* build(int in[],int pre[], int l, int h){
+        if(l>h){
+            return NULL;
+        }
+        Node* curr=new Node(1);
+        curr->data=pre[currindex];
+        curr->left=NULL;
+        curr->right=NULL;
+        if(l==h){
+            currindex++;
+            return curr;
+        }
+        int ind=index[pre[currindex]];
+        currindex++;
+        curr->left=build(in,pre,l,ind-1);
+        curr->right=build(in,pre,ind+1,h);
+    }
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        // Code here
+        currindex=0;
+        for(int i=0;i<n;i++){
+            index[in[i]]=i;
+        }
+        
+        return build(in,pre,0,n-1);
+    }
+};

@@ -1,0 +1,25 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+
+#include <cstdlib>
+using namespace std;
+int main() {
+    int n,m;
+    cin>>n>>m;
+    int q=n/m;
+    int n1=m*q;
+    int a;
+    if(n*m>0){
+        a=m*(q+1);
+    }
+    else{
+        a=m*(q-1);
+    }
+    if(abs(n-n1)<abs(n-a)){
+        cout<<n1;
+    }
+    else{
+        cout<<a;
+    }
+    return 0;
+}
